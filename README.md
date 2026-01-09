@@ -3,16 +3,8 @@
 This project aims to analyze and predict the prices of used BMW cars using listing data. The goal is to build a data analytics workflow, starting from raw data ingestion and cleaning, followed by exploratory data analysis and regression-based price prediction.
 
 ---
-
-## Current Progress
-- Database schema design
-- Raw data ingestion from CSV
-- Data cleaning using a staging table
-
----
-
 ## Data Source
-- Kaggle: BMW Used Car Listings dataset  
+- Kaggle: BMW Used Car Listings dataset  https://www.kaggle.com/datasets/mysarahmadbhat/bmw-used-car-listing
 - Features include:
   - Model
   - Year
@@ -23,6 +15,13 @@ This project aims to analyze and predict the prices of used BMW cars using listi
   - Tax
   - MPG
   - Engine size
+---
+
+
+## Current Progress
+- Database schema design
+- Raw data ingestion from CSV
+- Data cleaning using a staging table
 
 ---
 
