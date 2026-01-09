@@ -52,8 +52,17 @@ A PostgreSQL database was used to store and clean the data.
 This approach mirrors a real-world ETL process and ensures data integrity before analysis.
 
 ---
-## Next Steps
-- Perform exploratory data analysis (EDA) using SQL and Python
-- Visualize price trends and relationships between features
-- Build regression models to predict used BMW car prices
-- Analyze feature importance and model performance
+# Next Steps
+## Exploratory Data Analysis (EDA)
+- Checked distributions of price, mileage, engine size
+- Analyzed average prices by model, transmission, and fuel type
+- Visualized price trends and relationships using scatterplots and bar charts
+
+## Feature Engineering
+- Encoded categorical variables: `model`, `transmission`, `fuelType`
+- Used derived features: `car_age`, `mileage_per_year`
+
+## Regression Modeling
+- Built Linear Regression and Random Forest models to predict used BMW prices
+- Evaluated models using R² and RMSE
+- Analyzed feature importance; top factors influencing price: `car_age`, `engineSize`, `mileage_per_year`
