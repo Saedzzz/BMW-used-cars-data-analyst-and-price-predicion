@@ -48,7 +48,61 @@ A PostgreSQL database was used to store and clean the data.
 This approach mirrors a real-world ETL process and ensures data integrity before analysis.
 
 ---
+CREATE TABLE usedCars_staging (
+    model TEXT,
+    year TEXT,
+    price TEXT,
+    transmission TEXT,
+    mileage TEXT,
+    fuelType TEXT,
+    tax TEXT,
+    mpg TEXT,
+    engineSize TEXT
+);
 
+SELECT * FROM usedcars_staging;
+
+DROP TABLE IF EXISTS usedCars;
+
+CREATE TABLE usedCars (
+    car_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    model VARCHAR(50),
+    year INT,
+    price INT,
+    transmission VARCHAR(20),
+    mileage INT,
+    fuelType VARCHAR(20),
+    tax INT,
+    mpg FLOAT,
+    engineSize FLOAT
+);
+
+
+INSERT INTO usedCars (
+    model, year, price, transmission, mileage,
+    fuelType, tax, mpg, engineSize
+)
+SELECT
+    model,
+    NULLIF(year, '')::INT,
+    NULLIF(price, '')::INT,
+    transmission,
+    NULLIF(mileage, '')::INT,
+    fuelType,
+    NULLIF(tax, '')::INT,
+    NULLIF(mpg, '')::FLOAT,
+    NULLIF(engineSize, '')::FLOAT
+FROM usedCars_staging;
+
+SELECT * FROM usedcars;
+
+SELECT COUNT(*) FROM usedCars;
+SELECT COUNT(*) FROM usedCars_staging;
+
+
+
+
+---
 ## Next Steps
 - Perform exploratory data analysis (EDA) using SQL and Python
 - Visualize price trends and relationships between features
