@@ -52,7 +52,7 @@ A PostgreSQL database was used to store and clean the data.
 This approach mirrors a real-world ETL process and ensures data integrity before analysis.
 
 ---
-# Next Steps
+
 ## Exploratory Data Analysis (EDA)
 - Checked distributions of price, mileage, engine size
 - Analyzed average prices by model, transmission, and fuel type
