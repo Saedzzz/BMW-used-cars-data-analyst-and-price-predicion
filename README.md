@@ -67,6 +67,6 @@ This approach mirrors a real-world ETL process and ensures data integrity before
 - Evaluated models using R² and RMSE
 - Analyzed feature importance; top factors influencing price: `car_age`, `engineSize`, `mileage_per_year`
 ---
-## Connecting the Database to Python
-  The PostgreSQL database was connected to Python using `SQLAlchemy` and `pandas` to perform exploratory data analysis and modeling.
+## Connecting the Database to Python.
+The PostgreSQL database was connected to Python using `SQLAlchemy` and `pandas` to perform exploratory data analysis and modeling.
 ---
