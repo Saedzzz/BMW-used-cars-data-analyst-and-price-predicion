@@ -114,6 +114,5 @@ We built regression models to predict the prices of used BMW cars using the clea
 - The Random Forest model identifies which features most influence car prices.  
 - Top features include: `engineSize`, `mileage`, `car_age`, and specific BMW models.
 
-![Feature Importance](images/feature_importance.png)
 
 ---
