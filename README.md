@@ -90,3 +90,30 @@ After cleaning the data, we performed EDA to understand price trends and key rel
 These visualizations helped identify patterns and relationships that will inform feature engineering and predictive modeling.
 
 ---
+
+### Predictive Modeling
+
+We built regression models to predict the prices of used BMW cars using the cleaned dataset.
+
+**Workflow:**
+
+1. **Feature Engineering**
+   - `car_age` = Current year − Registration year  
+   - `mileage_per_year` = Mileage ÷ `car_age`  
+
+2. **Preprocessing**
+   - Standardized numeric features: `mileage`, `engineSize`, `car_age`, `mileage_per_year`  
+   - One-hot encoded categorical features: `model`, `transmission`, `fuelType`  
+
+3. **Models Used**
+   - **Linear Regression**  
+   - **Random Forest Regressor**  
+
+
+4. **Feature Importance (Random Forest)**
+- The Random Forest model identifies which features most influence car prices.  
+- Top features include: `engineSize`, `mileage`, `car_age`, and specific BMW models.
+
+![Feature Importance](images/feature_importance.png)
+
+---
