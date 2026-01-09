@@ -16,10 +16,16 @@ This project aims to analyze and predict the prices of used BMW cars using listi
   - MPG
   - Engine size
 ---
+## Tech Stack
+- SQL (PostgreSQL)
+- Python
+- Pandas, NumPy, scikit-learn
+- Git & GitHub
 
+---
 
-## Current Progress
-- Database schema design
+## Progress
+- Database schema design (postgreSQL)
 - Raw data ingestion from CSV
 - Data cleaning using a staging table
 
@@ -28,7 +34,7 @@ This project aims to analyze and predict the prices of used BMW cars using listi
 ## Database Design
 A PostgreSQL database was used to store and clean the data.
 
-- A surrogate primary key (`car_id`) was introduced to uniquely identify each car listing.
+- We added a primary key (`car_id`) to uniquely identify each car listing.
 - Initial attempts to import the raw CSV directly into a typed table failed due to missing and inconsistent values.
 - To handle this, a staging table with all columns defined as `TEXT` was created to safely ingest raw data.
 
@@ -40,14 +46,6 @@ A PostgreSQL database was used to store and clean the data.
 3. Cast cleaned values into appropriate data types (`INT`, `FLOAT`) while inserting data into the final table.
 
 This approach mirrors a real-world ETL process and ensures data integrity before analysis.
-
----
-
-## Tech Stack
-- SQL (PostgreSQL)
-- Python (planned)
-- Pandas, NumPy, scikit-learn (planned)
-- Git & GitHub
 
 ---
 
