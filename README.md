@@ -69,4 +69,5 @@ This approach mirrors a real-world ETL process and ensures data integrity before
 ---
 ## Connecting the Database to Python.
 The PostgreSQL database was connected to Python using `SQLAlchemy` and `pandas` to perform exploratory data analysis and modeling.
+
 ---
