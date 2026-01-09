@@ -40,12 +40,16 @@ A PostgreSQL database was used to store and clean the data.
 
 ---
 
-## Data Cleaning Approach
+## Data Cleaning & Preprocessing
 1. Imported raw CSV data into a staging table (`usedCars_staging`) with all columns stored as text.
 2. Converted empty strings to `NULL` values using `NULLIF`.
 3. Cast cleaned values into appropriate data types (`INT`, `FLOAT`) while inserting data into the final table.
 4. Checked for missing values in all columns (`price`, `year`, `mileage`, `engineSize`, etc.)
 - No null values were found, so all rows are ready for analysis
+5. Removed duplicates
+6. Standardized categorical columns (`transmission`, `fuelType`, etc.)
+7. Created derived features: `car_age`, `mileage_per_year`
+8. Checked for unrealistic outliers in price and mileage
 This approach mirrors a real-world ETL process and ensures data integrity before analysis.
 
 ---
