@@ -53,7 +53,7 @@ This approach mirrors a real-world ETL process and ensures data integrity before
 
 ---
 
-## Exploratory Data Analysis (EDA)
+## Exploratory Data Analysis (EDA) in SQL
 - Checked distributions of price, mileage, engine size
 - Analyzed average prices by model, transmission, and fuel type
 - Visualized price trends and relationships using scatterplots and bar charts
@@ -69,5 +69,24 @@ This approach mirrors a real-world ETL process and ensures data integrity before
 ---
 ## Connecting the Database to Python.
 The PostgreSQL database was connected to Python using `SQLAlchemy` and `pandas` to perform exploratory data analysis and modeling.
+
+---
+## Exploratory Data Analysis (EDA) in Python
+
+After cleaning the data, we performed EDA to understand price trends and key relationships between features:
+
+1. **Price Distribution**
+   - Visualized the distribution of used BMW car prices using a histogram.
+   - Observed the majority of cars fall within a mid-range price bracket, with fewer very expensive or very cheap listings.
+
+2. **Price vs Mileage**
+   - Scatter plot of price against mileage.
+   - Shows a clear trend that higher mileage generally corresponds to lower prices, as expected.
+
+3. **Average Price by Model**
+   - Calculated the average price for each BMW model and plotted as a bar chart.
+   - Identified which models are generally more expensive on the used market.
+
+These visualizations helped identify patterns and relationships that will inform feature engineering and predictive modeling.
 
 ---
