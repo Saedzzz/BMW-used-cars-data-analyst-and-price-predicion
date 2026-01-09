@@ -9,3 +9,4 @@ CREATE TABLE usedCars_staging (
     mpg TEXT,
     engineSize TEXT
 );
+
