@@ -128,3 +128,11 @@ sample = pd.DataFrame([
 sample_fe = add_features(sample)  # adds car_age and mileage_per_year
 preds = best_model.predict(sample_fe[feature_cols_fe])
 sample["predicted_price"] = preds.round(0).astype(int)
+
+**Example Output:**  
+
+| model    | year | transmission | mileage | fuelType | tax | mpg  | engineSize | predicted_price |
+|----------|------|-------------|---------|---------|-----|------|------------|----------------|
+| 5 Series | 2018 | Automatic   | 23195   | Diesel  | 145 | 65.7 | 2.0        | €31,500        |
+| 1 Series | 2017 | Manual      | 17117   | Petrol  | 145 | 53.3 | 1.5        | €19,200        |
+| X3       | 2016 | Automatic   | 42691   | Diesel  | 145 | 54.3 | 2.0        | €27,000        |
