@@ -8,15 +8,17 @@ This project aims to analyze and predict the prices of used BMW cars using listi
 ## Data Source
 - Kaggle: [BMW Used Car Listings dataset](https://www.kaggle.com/datasets/mysarahmadbhat/bmw-used-car-listing)  
 - Features include:
-  - `model`
-  - `year`
-  - `price`
-  - `transmission`
-  - `mileage`
-  - `fuelType`
-  - `tax`
-  - `mpg`
-  - `engineSize`
+ | Column         | Description                  |
+|----------------|------------------------------|
+| model          | BMW model                    |
+| year           | Registration year            |
+| price          | Price in Euros               |
+| transmission   | Gearbox type                 |
+| mileage        | Distance driven              |
+| fuelType       | Fuel type                    |
+| tax            | Road tax                     |
+| mpg            | Miles per gallon             |
+| engineSize     | Engine size in litres        |
 
 ---
 
