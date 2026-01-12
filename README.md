@@ -1,118 +1,128 @@
-# BMW Used Cars Data Analysing And Price Predicion
+# BMW Used Cars Data Analysis and Price Prediction
+
 ## Project Overview
-This project aims to analyze and predict the prices of used BMW cars using listing data. The goal is to build a data analytics workflow, starting from raw data ingestion and cleaning, followed by exploratory data analysis and regression-based price prediction.
+This project aims to analyze and predict the prices of used BMW cars using listing data. The goal is to build a complete data analytics workflow: raw data ingestion and cleaning, exploratory data analysis (EDA), feature engineering, and regression-based price prediction using advanced machine learning models.
 
 ---
+
 ## Data Source
-- Kaggle: BMW Used Car Listings dataset  https://www.kaggle.com/datasets/mysarahmadbhat/bmw-used-car-listing
+- Kaggle: [BMW Used Car Listings dataset](https://www.kaggle.com/datasets/mysarahmadbhat/bmw-used-car-listing)  
 - Features include:
-  - Model
-  - Year
-  - Price
-  - Transmission
-  - Mileage
-  - Fuel type
-  - Tax
-  - MPG
-  - Engine size
+  - `model`
+  - `year`
+  - `price`
+  - `transmission`
+  - `mileage`
+  - `fuelType`
+  - `tax`
+  - `mpg`
+  - `engineSize`
+
 ---
+
 ## Tech Stack
-- SQL (PostgreSQL)
-- Python
-- Pandas, NumPy, scikit-learn
-- Git & GitHub
+- PostgreSQL (Database design, cleaning, staging tables)  
+- Python  
+- Pandas, NumPy, scikit-learn, matplotlib, seaborn  
+- Git & GitHub  
 
 ---
 
 ## Progress
-- Database schema design (postgreSQL)
-- Raw data ingestion from CSV
-- Data cleaning using a staging table
+
+**Completed:**
+- Database schema design in PostgreSQL  
+- Raw data ingestion from CSV into a staging table  
+- Data cleaning: missing values, duplicates, outlier checks, categorical standardization  
+- Exploratory Data Analysis (EDA) in SQL and Python  
+- Feature Engineering: `car_age` and `mileage_per_year`  
+- Predictive Modeling using regression pipelines and hyperparameter tuning  
+- Model evaluation using MAE, RMSE, and R²  
+
+**Final Model:**
+- Tuned Histogram Gradient Boosting Regressor with log-transformed target (`price`)  
+- Ready for predicting prices of new BMW listings  
 
 ---
 
 ## Database Design
-A PostgreSQL database was used to store and clean the data.
-
-- We added a primary key (`car_id`) to uniquely identify each car listing.
-- Initial attempts to import the raw CSV directly into a typed table failed due to missing and inconsistent values.
-- To handle this, a staging table with all columns defined as `TEXT` was created to safely ingest raw data.
+- Primary key `car_id` added to uniquely identify each listing  
+- Staging table created with all columns as `TEXT` to safely ingest raw CSV data  
+- Final cleaned table with appropriate data types (`INT`, `FLOAT`, `VARCHAR`)  
 
 ---
 
 ## Data Cleaning & Preprocessing
-1. Imported raw CSV data into a staging table (`usedCars_staging`) with all columns stored as text.
-2. Converted empty strings to `NULL` values using `NULLIF`.
-3. Cast cleaned values into appropriate data types (`INT`, `FLOAT`) while inserting data into the final table.
-4. Checked for missing values in all columns (`price`, `year`, `mileage`, `engineSize`, etc.)
-- No null values were found, so all rows are ready for analysis
-5. Checked for duplicates and removed them
-6. Standardized categorical columns (`transmission`, `fuelType`, etc.)
-7. Checked for unrealistic outliers in price and mileage
-This approach mirrors a real-world ETL process and ensures data integrity before analysis.
+1. Imported raw CSV data into `usedCars_staging`.  
+2. Converted empty strings to `NULL` using `NULLIF`.  
+3. Cast data into proper types (`INT`, `FLOAT`) for analysis.  
+4. Checked for null values (none found).  
+5. Removed duplicates.  
+6. Standardized categorical columns (`model`, `transmission`, `fuelType`).  
+7. Inspected for outliers in `price`, `mileage`, and `engineSize`.  
 
 ---
-
-## Exploratory Data Analysis (EDA) in SQL
-- Checked distributions of price, mileage, engine size
-- Analyzed average prices by model, transmission, and fuel type
-- Visualized price trends and relationships using scatterplots and bar charts
 
 ## Feature Engineering
-- Encoded categorical variables: `model`, `transmission`, `fuelType`
-- Used derived features: `car_age`, `mileage_per_year`
-
-## Regression Modeling
-- Built Linear Regression and Random Forest models to predict used BMW prices
-- Evaluated models using R² and RMSE
-- Analyzed feature importance; top factors influencing price: `car_age`, `engineSize`, `mileage_per_year`
----
-## Connecting the Database to Python.
-The PostgreSQL database was connected to Python using `SQLAlchemy` and `pandas` to perform exploratory data analysis and modeling.
+- Added `car_age = REFERENCE_YEAR - year`  
+- Added `mileage_per_year = mileage / car_age` (handling division by zero)  
+- Encoded categorical variables using One-Hot Encoding: `model`, `transmission`, `fuelType`  
 
 ---
+
 ## Exploratory Data Analysis (EDA) in Python
 
-After cleaning the data, we performed EDA to understand price trends and key relationships between features:
+1. **Price Distribution**  
+   - Histogram showing distribution of BMW prices.  
+   - Most cars are mid-priced; fewer listings at very low or very high prices.  
 
-1. **Price Distribution**
-   - Visualized the distribution of used BMW car prices using a histogram.
-   - Observed the majority of cars fall within a mid-range price bracket, with fewer very expensive or very cheap listings.
+2. **Price vs Mileage**  
+   - Scatter plot shows higher mileage generally corresponds to lower prices.  
 
-2. **Price vs Mileage**
-   - Scatter plot of price against mileage.
-   - Shows a clear trend that higher mileage generally corresponds to lower prices, as expected.
+3. **Average Price by Model**  
+   - Bar chart of average price per BMW model.  
+   - Highlights which models are more expensive on the used market.  
 
-3. **Average Price by Model**
-   - Calculated the average price for each BMW model and plotted as a bar chart.
-   - Identified which models are generally more expensive on the used market.
-
-These visualizations helped identify patterns and relationships that will inform feature engineering and predictive modeling.
+4. **Correlation Analysis**  
+   - Numeric features like `engineSize`, `car_age`, and `mileage_per_year` show strong correlation with `price`.  
 
 ---
 
-### Predictive Modeling
-
-We built regression models to predict the prices of used BMW cars using the cleaned dataset.
+## Predictive Modeling
 
 **Workflow:**
 
-1. **Feature Engineering**
-   - `car_age` = Current year − Registration year  
-   - `mileage_per_year` = Mileage ÷ `car_age`  
+1. **Preprocessing Pipeline**
+   - One-Hot Encoding for categorical features  
+   - Numeric features passed through unchanged  
 
-2. **Preprocessing**
-   - Standardized numeric features: `mileage`, `engineSize`, `car_age`, `mileage_per_year`  
-   - One-hot encoded categorical features: `model`, `transmission`, `fuelType`  
+2. **Target Transformation**
+   - Log transformation applied to `price` to reduce skew  
 
-3. **Models Used**
-   - **Linear Regression**  
-   - **Random Forest Regressor**  
+3. **Modeling**
+   - Trained `HistGradientBoostingRegressor` using pipeline  
+   - Hyperparameter tuning with `RandomizedSearchCV` and cross-validation  
 
+4. **Evaluation Metrics**
+   - MAE (Mean Absolute Error)  
+   - RMSE (Root Mean Squared Error)  
+   - R² (Coefficient of Determination)  
 
-4. **Feature Importance (Random Forest)**
-- The Random Forest model identifies which features most influence car prices.  
-- Top features include: `engineSize`, `mileage`, `car_age`, and specific BMW models.
-
+**Best Model Performance:**  
+- Tuned HGB model outperformed others on test data.  
+- Top predictors: `car_age`, `engineSize`, `mileage_per_year`, and specific `model` categories  
 
 ---
+
+## Example Predictions
+
+```python
+sample = pd.DataFrame([
+    {"model": "5 Series", "year": 2018, "transmission": "Automatic", "mileage": 23195, "fuelType": "Diesel", "tax": 145, "mpg": 65.7, "engineSize": 2.0},
+    {"model": "1 Series", "year": 2017, "transmission": "Manual", "mileage": 17117, "fuelType": "Petrol", "tax": 145, "mpg": 53.3, "engineSize": 1.5},
+    {"model": "X3", "year": 2016, "transmission": "Automatic", "mileage": 42691, "fuelType": "Diesel", "tax": 145, "mpg": 54.3, "engineSize": 2.0},
+])
+
+sample_fe = add_features(sample)  # adds car_age and mileage_per_year
+preds = best_model.predict(sample_fe[feature_cols_fe])
+sample["predicted_price"] = preds.round(0).astype(int)
