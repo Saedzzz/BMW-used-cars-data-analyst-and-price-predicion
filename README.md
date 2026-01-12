@@ -6,9 +6,9 @@ This project aims to analyze and predict the prices of used BMW cars using listi
 ---
 
 ## Data Source
-- Kaggle: [BMW Used Car Listings dataset](https://www.kaggle.com/datasets/mysarahmadbhat/bmw-used-car-listing)  
-- Features include:
- | Column         | Description                  |
+The data is sourced from [Kaggle: BMW Used Car Listing](https://www.kaggle.com/datasets/mysarahmadbhat/bmw-used-car-listing), containing the following columns:  
+
+| Column         | Description                  |
 |----------------|------------------------------|
 | model          | BMW model                    |
 | year           | Registration year            |
